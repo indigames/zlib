@@ -9,18 +9,12 @@ set (BUILD_SHARED_LIBS OFF)
 option(ASM686 "Enable building i686 assembly implementation")
 option(AMD64 "Enable building amd64 assembly implementation")
 
-# [IGE]: compiler options 
-if(MSVC)
-    add_compile_options(/MP)
-elseif(EMSCRIPTEN)
-    add_compile_options(-m32 -pthread -s USE_PTHREADS=1)
-endif()
-# [/IGE]
-
 # Install Targets
 set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR}/install)
-set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../cmake" ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})
 set(CMAKE_PREFIX_PATH ${CMAKE_BINARY_DIR} ${CMAKE_PREFIX_PATH})
+
+include(compiler_options)
 
 set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
 set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
