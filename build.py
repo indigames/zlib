@@ -58,7 +58,6 @@ def build(target, arch):
         shutil.move(os.path.join(install_dir, fname), prebuilt_dir)
 
 def main():
-    safeRemove('prebuilt')
     if platform.system() == 'Windows':
         build('windows', 'x86_64')
 
